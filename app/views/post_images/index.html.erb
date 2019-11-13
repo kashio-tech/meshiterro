@@ -15,8 +15,10 @@
                     <%#  <%= image_tag('sample-post1.jpg') %>
                   </a> -->
 
-                  <!-- ３章で上記３行をコメントアウトし、以下の１行を挿入 -->
+                  <!-- ３章で上記３行をコメントアウトし、以下の3行を挿入 -->
+                  <%= link_to post_image_path(post_image.id) do %>
                   <%= attachment_image_tag post_image, :image %>
+                  <% end %>
                 </div>
               </div>
 
@@ -25,12 +27,9 @@
                 <h3 class="block-title">
                   <!-- <a href="#"><i class="fa fa-map-marker"></i> ショップ名</a> -->
                   <!-- ３章で上記３行をコメントアウトし、以下の３行を挿入 -->
-
-
                   <%= link_to post_image_path(post_image.id) do %>
                   <i class="fa fa-map-marker"></i>
                   <%= post_image.shop_name %>
-                  <%= attachment_image_tag post_image, :image %>
                   <% end %>
                 </h3>
                 <!-- <p>この画像に関する説明</p> -->
@@ -43,13 +42,16 @@
                     <%= post_image.user.name %>
                   </li>
                   <li>
-                    <a href="#">23 コメント</a>
+                   <!--  <a href="#">23 コメント</a> -->
+                   <!-- 4章で上記1行をコメントアウトし、以下の1行を挿入 -->
+                   <%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
           <% end %>
+          <%= paginate @post_images, class: "paginate" %>
         </div>
       </div>
     </div>
