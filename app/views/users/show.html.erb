@@ -1,0 +1,69 @@
+<!-- # ５章ここから -->
+<div class="profile-container">
+    <h3 class="profile-name"><%= @user.name %></h3>
+    <%= image_tag('sample-author1.jpg', class: "img-circle pull-left profile-thumb", style: "width: 100px; height: 100px; margin-top: 20px;") %>
+    <% if @user.id == current_user.id %>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "pull-right" %></p>
+    <% end %>
+</div>
+<!-- # ここまでを追加 -->
+
+<section class="sct-color-1 slice">
+  <div class="container-fluid masonry-container">
+    <div class="row">
+      <div class="col-md-8 col-sm-offset-2">
+        <div class="masonry-wrapper-cols">
+          <div class="masonry-gutter"></div>
+          <!-- ３章で以下の１行を挿入 -->
+          <% @post_images.each do |post_image| %>
+          <div class="masonry-block">
+            <div class="block block-image v1">
+
+              <div class="block-image">
+                <div class="view view-first">
+                  <!-- <a href="">
+                    <%#  <%= image_tag('sample-post1.jpg') %>
+                  </a> -->
+
+                  <!-- ３章で上記３行をコメントアウトし、以下の3行を挿入 -->
+                  <%= link_to post_image_path(post_image.id) do %>
+                  <%= attachment_image_tag post_image, :image %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="block-content">
+                <%= image_tag('sample-author1.jpg', class: "img-circle pull-left profile-thumb") %>
+                <h3 class="block-title">
+                  <!-- <a href="#"><i class="fa fa-map-marker"></i> ショップ名</a> -->
+                  <!-- ３章で上記３行をコメントアウトし、以下の３行を挿入 -->
+                  <%= link_to post_image_path(post_image.id) do %>
+                  <i class="fa fa-map-marker"></i>
+                  <%= post_image.shop_name %>
+                  <% end %>
+                </h3>
+                <!-- <p>この画像に関する説明</p> -->
+                <!-- ３章で上記１行をコメントアウトし、以下の1行を挿入 -->
+                <p><%= post_image.caption %></p>
+                <ul class="inline-meta">
+                  <li>By
+                    <!-- <a href="#">投稿者名</a> -->
+                    <!-- ３章で上記１行をコメントアウトし、以下の1行を挿入 -->
+                    <%= post_image.user.name %>
+                  </li>
+                  <li>
+                   <!--  <a href="#">23 コメント</a> -->
+                   <!-- 4章で上記1行をコメントアウトし、以下の1行を挿入 -->
+                   <%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <% end %>
+          <%= paginate @post_images, class: "paginate" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
