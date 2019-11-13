@@ -23,7 +23,9 @@
               </div>
 
               <div class="block-content">
-                <%= image_tag('sample-author1.jpg', class: "img-circle pull-left profile-thumb") %>
+                <%#<%= image_tag('sample-author1.jpg', class: "img-circle pull-left profile-thumb") %>
+                <!-- 6章で上記1行をコメントアウトし、以下の1行を挿入 -->
+                <%= attachment_image_tag post_image.user, :profile_image, :fill, 60, 60, fallback: "no_image.ipg", class: "img-circle pull-left profile-thumb" %>
                 <h3 class="block-title">
                   <!-- <a href="#"><i class="fa fa-map-marker"></i> ショップ名</a> -->
                   <!-- ３章で上記３行をコメントアウトし、以下の３行を挿入 -->

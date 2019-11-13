@@ -90,7 +90,9 @@
                                             <!-- <img src="images/sample-author1.jpg"> -->
                                             <%#<%= image_tag('sample-author1.jpg') %>
                                             <!-- 4章で上記1行をコメントアウトし、以下の1行を挿入 -->
-                                            <%= image_tag('sample-author1.jpg', style: "width: 60px; height: 60px") %>
+                                           <%# <%= image_tag('sample-author1.jpg', style: "width: 60px; height: 60px") %>
+                                           <!-- ６章で上記をコメントアウトし、以下の１行を記入 -->
+                                           <%= attachment_image_tag post_comment.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
                                         </div>
                                     </div>
                                     <div class="comment-text">
